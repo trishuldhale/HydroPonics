@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Hydroponics Dashboard</title>
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ===== Chart.js ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- ===== Firebase SDKs ===== -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <h1>🌱 Smart Hydroponics Dashboard</h1>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <div class="container">
+
+    <!-- ================= SENSOR CARD ================= -->
+    <div class="card sensor">
+      <h3>Sensor Readings</h3>
+
+      <p>🌡 Temperature: <span id="temp">--</span> °C</p>
+      <p>💧 Humidity: <span id="hum">--</span> %</p>
+      <p>🧪 TDS: <span id="tds">--</span> ppm</p>
+      <p>⚗ pH: <span id="ph">--</span></p>
+      <p>☀ Light: <span id="light">--</span></p>
+    </div>
+
+    <!-- ================= CHARTS ================= -->
+    <div class="card">
+      <h3>📈 Live Sensor Charts</h3>
+
+      <canvas id="tempChart"></canvas>
+      <canvas id="phChart"></canvas>
+      <canvas id="tdsChart"></canvas>
+    </div>
+
+    <!-- ================= MODE CARD ================= -->
+    <div class="card">
+      <h3>System Mode</h3>
+
+      <select id="mode">
+        <option value="MANUAL">MANUAL</option>
+        <option value="AUTO">AUTO</option>
+      </select>
+
+      <button onclick="setMode()">Apply Mode</button>
+
+      <p class="mode-indicator">
+        Current Mode:
+        <strong><span id="currentMode">--</span></strong>
+      </p>
+    </div>
+
+    <!-- ================= MANUAL CONTROL ================= -->
+    <div class="card" id="manualControlCard">
+      <h3>Manual Control</h3>
+
+      <div class="control-row">
+        <button id="btn-pump" onclick="toggleRelay('pump')">💧 Water Pump</button>
+        <span class="status off" id="status-pump">OFF</span>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-light" onclick="toggleRelay('light')">💡 Grow Light</button>
+        <span class="status off" id="status-light">OFF</span>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-oxygen" onclick="toggleRelay('oxygen')">💨 Oxygen Pump</button>
+        <span class="status off" id="status-oxygen">OFF</span>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-nutrientA" onclick="toggleRelay('nutrientA')">🧪 Nutrient A</button>
+        <span class="status off" id="status-nutrientA">OFF</span>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-nutrientB" onclick="toggleRelay('nutrientB')">🧪 Nutrient B</button>
+        <span class="status off" id="status-nutrientB">OFF</span>
+      </div>
+    </div>
+
+    <!-- ================= AUTO SETTINGS ================= -->
+    <div class="card">
+      <h3>Automatic Settings</h3>
+
+      <select id="plant">
+        <option value="LEAFY">Leafy Vegetables</option>
+        <option value="FRUITING">Fruiting Vegetables</option>
+      </select>
+
+      <select id="stage">
+        <option value="SEEDLING">Seedling</option>
+        <option value="EARLY">Early Growth</option>
+        <option value="VEGETATIVE">Vegetative</option>
+        <option value="FLOWERING">Flowering</option>
+        <option value="BLOOMING">Blooming / Ripening</option>
+      </select>
+
+      <button onclick="setAutoSettings()">Apply Auto Settings</button>
+    </div>
+
+  </div>
+
+  <!-- ================= ALERT ================= -->
+  <h2 id="alert">System Status: NORMAL</h2>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script src="script.js"></script>
+  
+
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+/* =======================
+   🌱 GLOBAL THEME
+======================= */
+:root {
+  --primary: #2ecc71;
+  --secondary: #27ae60;
+  --danger: #e74c3c;
+  --info: #00c6ff;
+
+  --bg-dark: #0f2027;
+  --bg-mid: #203a43;
+  --bg-light: #2c5364;
+
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+  color: #ffffff;
+}
+
+/* =======================
+   HEADER
+======================= */
+h1 {
+  text-align: center;
+  padding: 18px;
+  margin: 0;
+  background: rgba(0,0,0,0.35);
+  letter-spacing: 1px;
+}
+
+/* =======================
+   MAIN LAYOUT
+======================= */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* =======================
+   CARD (GLASS EFFECT)
+======================= */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* =======================
+   SENSOR DISPLAY
+======================= */
+.sensor p {
+  font-size: 18px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sensor span {
+  font-weight: bold;
+  color: #00ffb3;
+}
+
+/* =======================
+   SELECT DROPDOWNS
+======================= */
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255,255,255,0.95);
+  color: #000;
+  outline: none;
+  cursor: pointer;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+button {
+  width: 100%;
+  padding: 14px;
+  margin: 6px 0;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--info), #0072ff);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =======================
+   CONTROL ROW (MANUAL)
+======================= */
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* =======================
+   STATUS BADGES
+======================= */
+.status {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+}
+
+.status.on {
+  background: var(--primary);
+  color: #003300;
+}
+
+.status.off {
+  background: var(--danger);
+  color: white;
+}
+
+/* =======================
+   MODE INDICATOR
+======================= */
+.mode-indicator {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.mode-indicator span {
+  font-weight: bold;
+  color: #00ff99;
+}
+
+/* =======================
+   AUTO MODE DISABLE
+======================= */
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* =======================
+   CHARTS
+======================= */
+.card canvas {
+  margin-top: 15px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* =======================
+   ALERT STATUS
+======================= */
+#alert {
+  text-align: center;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 20px;
+  margin: 25px;
+  font-weight: bold;
+  background: var(--primary);
+  color: #003300;
+  animation: pulseGreen 1.5s infinite;
+}
+
+#alert.danger {
+  background: var(--danger);
+  color: white;
+  animation: pulseRed 1.2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 6px rgba(46,204,113,0.6); }
+  50% { box-shadow: 0 0 25px rgba(46,204,113,1); }
+  100% { box-shadow: 0 0 6px rgba(46,204,113,0.6); }
+}
+
+@keyframes pulseRed {
+  0% { box-shadow: 0 0 6px rgba(231,76,60,0.6); }
+  50% { box-shadow: 0 0 25px rgba(231,76,60,1); }
+  100% { box-shadow: 0 0 6px rgba(231,76,60,0.6); }
+}
+
+/* =======================
+   RESPONSIVE
+======================= */
+@media (max-width: 700px) {
+  h1 {
+    font-size: 22px;
+  }
+  .sensor p {
+    font-size: 16px;
+  }
+}
